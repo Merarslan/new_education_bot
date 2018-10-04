@@ -7,7 +7,7 @@ import time
 import datetime
 import hashlib
 from telebot import types
-bot_token = "637667529:AAEu2DHOd1L2JROlIs8UyCm8zMJ9-VSe56E"
+bot_token = "646643183:AAF-nkj3t46rtZXNJbWZAnE0jrKzeIlpnqM"
 bot = telebot.TeleBot(token=bot_token)
 phone_numbers = {}
 data = {}
