@@ -5,8 +5,9 @@ from oauth2client import file, client, tools
 import telebot
 import time
 import datetime
+import hashlib
 from telebot import types
-bot_token = "646643183:AAF-nkj3t46rtZXNJbWZAnE0jrKzeIlpnqM"
+bot_token = "637667529:AAEu2DHOd1L2JROlIs8UyCm8zMJ9-VSe56E"
 bot = telebot.TeleBot(token=bot_token)
 phone_numbers = {}
 data = {}
@@ -26,8 +27,13 @@ def send_welcome(message):
     msg = bot.reply_to(message,text="Would you mind sharing your contact with me?",reply_markup=markup)
     bot.register_next_step_handler(msg, getContact)
 def getContact(message):
-    phone_numbers[message.chat.id] = message.contact.phone_number
-    data[message.contact.phone_number] = []
+    phone = hashlib.sha512(bytes(message.contact.phone_number, encoding='utf-8')).hexdigest()
+    phone = hashlib.sha512(bytes(phone,encoding='utf-8')).hexdigest()
+    phone = hashlib.sha512(bytes(phone,encoding='utf-8')).hexdigest()
+    phone = hashlib.sha512(bytes(phone,encoding='utf-8')).hexdigest()
+    phone = hashlib.sha512(bytes(phone,encoding='utf-8')).hexdigest()
+    phone_numbers[message.chat.id] = phone
+    data[phone] = []
     mainMenu(message)
 def mainMenu(message):
     k = types.ReplyKeyboardRemove(selective=False)
